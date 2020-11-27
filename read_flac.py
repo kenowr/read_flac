@@ -54,7 +54,7 @@ def read_flac(file, chunk = None, **kwargs):
     n_channels = x.shape[1] if len(x.shape) == 2 else 1
     if n_channels in [1,2,4,8]: # sf.read works normally for n_channels being powers of 2
         return sf.read(file, **kwargs)
-    else:
+    elif chunk is None:
         chunk = (2**24)//n_channels
     
     ## READ FILE CHUNK BY CHUNK IF n_channels IS NOT A POWER OF 2.
